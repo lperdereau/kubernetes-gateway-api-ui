@@ -1,0 +1,26 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^0.4.2",
+    "@nuxtjs/tailwindcss": "^6.6.6",
+    "@types/node": "^18",
+    "nuxt": "^3.4.2",
+    "nuxt-icon": "^0.3.3"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.18.1",
+    "class-variance-authority": "^0.5.2",
+    "inversify": "^6.0.1",
+    "inversify-inject-decorators": "^3.1.0",
+    "oh-vue-icons": "^1.0.0-rc3",
+    "reflect-metadata": "^0.1.13"
+  }
+}
