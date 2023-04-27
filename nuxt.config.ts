@@ -7,4 +7,7 @@ export default defineNuxtConfig({
       linkActiveClass: "active",
     },
   },
+  runtimeConfig: {
+    "demo": process.env.DEMO ? true : false,
+  }
 });
