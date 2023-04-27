@@ -1,23 +1,20 @@
 <template>
   <div class="flex flex-col space-y-5">
-    <GatewayDashboard
-      v-for="gateway in gateways"
-      :key="gateway.name"
+    <DashboardGateway
+      v-for="gateway in data"
+      :key="gateway.metadata?.name"
       :gateway="gateway"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import GatewayModel from "~/domain/models/GatewayModel.model";
-import { GatewayRepository } from "~/infrastucture/repositories";
+import { Gateway } from "@kubernetes-models/gateway-api/gateway.networking.k8s.io/v1alpha2/Gateway";
+import { notifyError } from "~/store/notifications";
 
-const gateways = ref<GatewayModel[]>([]);
+const { data, error } = useFetch<Gateway[]>("/api/gateways");
 
-new GatewayRepository().getAll().then((items) => {
-  return (gateways.value = items);
+watch(error, () => {
+  notifyError(error.value?.name);
 });
 </script>
-
-<style>
-</style>

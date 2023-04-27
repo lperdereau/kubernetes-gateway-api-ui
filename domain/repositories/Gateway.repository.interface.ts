@@ -1,5 +1,6 @@
-import GatewayModelInterface from '~/domain/models/GatewayModel.model'
+import { Gateway } from "@kubernetes-models/gateway-api/gateway.networking.k8s.io/v1alpha2/Gateway";
+
 
 export interface GatewayRepositoryInterface {
-  getAll(): Promise<GatewayModelInterface[]>
+  getAll(): Promise<Gateway[]>
 }

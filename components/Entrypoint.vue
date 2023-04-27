@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { Listener } from "~/domain/models/GatewayModel.model";
+import { Listener } from "~/domain/models/Gateway.model";
 
 interface Props {
   listener: Listener;

@@ -6,5 +6,5 @@ export default defineNuxtConfig({
     options: {
       linkActiveClass: "active",
     },
-  },
+  }
 });

@@ -1,41 +1,53 @@
-import GatewayClassInterface from "~/domain/models/GatewayClassModel.model";
-import { GatewayInterface, Protocol } from "~/domain/models/GatewayModel.model";
+import { Gateway } from "@kubernetes-models/gateway-api/gateway.networking.k8s.io/v1alpha2/Gateway";
+import { GatewayClass } from "@kubernetes-models/gateway-api/gateway.networking.k8s.io/v1alpha2/GatewayClass";
 
 export default class InMemoryRepository {
-  gatewayClassStore: GatewayClassInterface[] = [
-    {
-      name: "cilium",
-      controller: "io.cilium/gateway-controller",
-    },
+  gatewayClassStore: GatewayClass[] = [
+    new GatewayClass({
+      metadata: {
+        name: "cilium",
+      },
+      spec: {
+        controllerName: "io.cilium/gateway-controller",
+      },
+    }),
   ];
 
-  gatewayStore: GatewayInterface[] = [
-    {
-      name: "default-http",
-      gatewayClassName: "cilium",
-      listeners: [
-        {
-          name: "http",
-          port: 80,
-          protocol: Protocol.HTTP,
-        },
-        {
-          name: "https",
-          port: 443,
-          protocol: Protocol.HTTPS,
-        },
-      ],
-    },
-    {
-      name: "least-cost-routing",
-      gatewayClassName: "cilium",
-      listeners: [
-        {
-          name: "sip",
-          port: 5060,
-          protocol: Protocol.UDP,
-        },
-      ],
-    },
+  gatewayStore: Gateway[] = [
+    new Gateway({
+      metadata: {
+        name: "default-http",
+      },
+      spec: {
+        gatewayClassName: "cilium",
+        listeners: [
+          {
+            name: "http",
+            port: 80,
+            protocol: "HTTP",
+          },
+          {
+            name: "https",
+            port: 443,
+            protocol: "HTTPS",
+          },
+        ],
+      },
+    }),
+    new Gateway({
+      metadata: {
+        name: "least-cost-routing",
+      },
+      spec: {
+        gatewayClassName: "cilium",
+        listeners: [
+          {
+            name: "sip",
+            port: 5060,
+            protocol: "UDP",
+          },
+        ],
+      },
+    }),
   ];
 }
