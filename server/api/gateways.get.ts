@@ -1,5 +1,5 @@
-import { getAllComponents } from "~/infrastucture/repositories";
+import { GatewayRepository } from "~/infrastucture/repositories";
 
 export default defineEventHandler(async (event) => {
-  return await new (getAllComponents()).GatewayRepository().getAll();
+  return await new GatewayRepository().getAll();
 });

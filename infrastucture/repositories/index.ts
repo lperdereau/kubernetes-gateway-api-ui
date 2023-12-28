@@ -6,24 +6,14 @@ import { GatewayClassRepository as InMemoryGatewayClassRepository } from "~/infr
 import { GatewayRepository as InMemoryGatewaRepository } from "~/infrastucture/repositories/InMemory/Gateway.repository";
 import { HTTPRouteRepository as InMemoryHTTPRouteRepository } from "~/infrastucture/repositories/InMemory/HTTPRoute.repository";
 
-interface Module {
-  GatewayClassRepository: any;
-  GatewayRepository: any;
-  HTTPRouteRepository: any;
-}
+const is_demo = useRuntimeConfig().demo;
 
-export function getAllComponents(): Module {
-  if (useRuntimeConfig().demo) {
-    return {
-      GatewayClassRepository: InMemoryGatewayClassRepository,
-      GatewayRepository: InMemoryGatewaRepository,
-      HTTPRouteRepository: InMemoryHTTPRouteRepository,
-    };
-  } else {
-    return {
-      GatewayClassRepository: KubernetesGatewayClassRepository,
-      GatewayRepository: KubernetesGatewaRepository,
-      HTTPRouteRepository: KubernetesHTTPRouteRepository,
-    };
-  }
-}
+export const GatewayClassRepository = is_demo
+  ? InMemoryGatewayClassRepository
+  : KubernetesGatewayClassRepository;
+export const GatewayRepository = is_demo
+  ? InMemoryGatewaRepository
+  : KubernetesGatewaRepository;
+export const HTTPRouteRepository = is_demo
+  ? InMemoryHTTPRouteRepository
+  : KubernetesHTTPRouteRepository;
