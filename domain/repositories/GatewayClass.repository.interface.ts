@@ -1,5 +1,5 @@
-import GatewayClassModelInterface from '~/domain/models/GatewayClassModel.model'
+import { GatewayClass } from "~/domain/models/index";
 
 export interface GatewayClassRepositoryInterface {
-  getAll(): Promise<GatewayClassModelInterface[]>
+  getAll(): Promise<GatewayClass[]>
 }

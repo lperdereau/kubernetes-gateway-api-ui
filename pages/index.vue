@@ -1,23 +1,24 @@
 <template>
   <div class="flex flex-col space-y-5">
-    <GatewayDashboard
-      v-for="gateway in gateways"
-      :key="gateway.name"
+    <DashboardGateway
+      v-for="gateway in data"
+      :key="gateway.metadata?.name"
       :gateway="gateway"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import GatewayModel from "~/domain/models/GatewayModel.model";
-import { GatewayRepository } from "~/infrastucture/repositories";
+import { Gateway } from "~/domain/models/index";
+import { notifyError } from "~/store/notifications";
 
-const gateways = ref<GatewayModel[]>([]);
+const { data, error } = useFetch<Gateway[]>("/api/gateways", {
+  default: () => [],
+});
 
-new GatewayRepository().getAll().then((items) => {
-  return (gateways.value = items);
+watch(error, () => {
+  if (error.value) {
+    notifyError(error.value?.name);
+  }
 });
 </script>
-
-<style>
-</style>

@@ -1,0 +1,41 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway-lperdereau
+spec:
+  gatewayClassName: gw-class
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: portal-http
+    port: 80
+    protocol: HTTP
+    hostname: portal.lperdereau.dev
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: portal-https
+    port: 443
+    protocol: HTTPS
+    hostname: portal.lperdereau.dev
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: api-http
+    port: 80
+    protocol: HTTP
+    hostname: api.lperdereau.dev
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: api-https
+    port: 443
+    protocol: HTTPS
+    hostname: api.lperdereau.dev
+  - allowedRoutes:
+      namespaces:
+        from: Same
+    name: dns
+    port: 53
+    protocol: UDP
