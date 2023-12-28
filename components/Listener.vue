@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col items-center bg-white border-gray-300 border rounded-md p-6"
+    class="flex flex-col items-center bg-white w-full border-gray-300 border rounded-md p-6"
   >
     <span class="text-xl font-light text-gray-500">
       {{ props.listener.name.toUpperCase() }}
