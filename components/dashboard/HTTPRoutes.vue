@@ -3,7 +3,7 @@
     <SectionTitle>HTTPRoute</SectionTitle>
     <RoutesTable :routes="props.routes.map((r) => r.metadata)">
       <template #empty-list>
-        <img src="/assets/illustrations.svg" class="lg:w-1/3 mt-32 m-auto"/>
+        <img src="/public/nodata.svg" class="lg:w-1/3 mt-32 m-auto"/>
       </template>
     </RoutesTable>
   </div>
